@@ -1,46 +1,23 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Ignora build, dependências, dados e SEGREDOS na raiz do repo (todas as pastas).
+node_modules/
+.next/
+out/
+build/
+dist/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# Dados de cliente / runtime (NUNCA versionar)
+data/
+**/data/
 
-# testing
-/coverage
+# Segredos (NUNCA versionar)
+.env
+.env.*
+**/.env
+**/.env.*
 
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-
-# F-16: dados de produção (conversas de cliente, entregas, arquivos) nunca no git
-/data/
-# reviews de segurança (não commitar detalhes)
-SECURITY_REVIEW*
-
-# vercel
-.vercel
-
-# typescript
+# Misc
 *.tsbuildinfo
 next-env.d.ts
+npm-debug.log*
+.DS_Store
+SECURITY_REVIEW*
