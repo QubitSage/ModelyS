@@ -1,0 +1,16 @@
+# F-15: mantém segredos e dados fora do contexto/camadas do build Docker.
+# ATENÇÃO: NÃO excluir *.md — prompts/*.md são carregados em runtime.
+node_modules
+.next
+out
+build
+.git
+.gitignore
+.env*
+data
+SECURITY_REVIEW.md
+.vercel
+.claude
+coverage
+*.tsbuildinfo
+npm-debug.log*
