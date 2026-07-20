@@ -54,6 +54,13 @@ export type UIStrings = {
   seeItems: string;
   requiredField: string;
   completeAll: string;
+  about: string; // rótulo do menu "Sobre / About"
+};
+
+export type AboutContent = {
+  eyebrow: string;
+  title: string;
+  paragraphs: string[];
 };
 
 export type SiteContent = {
@@ -62,6 +69,7 @@ export type SiteContent = {
   taglineLong: string;
   headerCta: string;
   ui: UIStrings;
+  about: AboutContent;
   services: Service[];
   contact: {
     headline: string;
@@ -86,7 +94,7 @@ const VIDEO: Record<string, string> = {
   brand: `${V}/ForBiggerBlazes.mp4`,
   storytelling: `${V}/ForBiggerMeltdowns.mp4`,
   corporate: `${V}/ElephantsDream.mp4`,
-  cgi: `${V}/ForBiggerJoyrides.mp4`,
+  cloning: `${V}/ForBiggerJoyrides.mp4`,
   websites: `${V}/BigBuckBunny.mp4`,
 };
 const poster = (id: string) => `https://picsum.photos/seed/${id}-poster/1920/1080`;
@@ -113,6 +121,15 @@ const en: SiteContent = {
     contactEyebrow: "Contact", seeItems: "See details",
     requiredField: "Please complete this required field.",
     completeAll: "Please complete all required fields.",
+    about: "About",
+  },
+  about: {
+    eyebrow: "About us",
+    title: "The studio behind the videos.",
+    paragraphs: [
+      "[Placeholder] The Modely story goes here: who we are, how we work, and why we build videos the way we do. You will fill this in with the good stuff later.",
+      "[Placeholder] A second paragraph for the mission, the team, and what sets the studio apart.",
+    ],
   },
   services: [
     {
@@ -173,23 +190,23 @@ const en: SiteContent = {
       gallery: gallery("corporate"),
     },
     {
-      id: "cgi", label: "3D / CGI",
-      tagline: "Photoreal product animation that makes your product look premium, without expensive photoshoots.",
-      videoSrc: VIDEO.cgi, poster: poster("cgi"),
-      description: "Tired of product photos that look flat or videos that don't show the product the way it deserves? This is for brands that want clean, high-end 3D visuals: realistic materials, perfect lighting and cinematic movement. We create product CGI that looks expensive and commercial. Ideal for launches, e-commerce, ads and websites, delivered fast with AI + human direction.",
+      id: "cloning", label: "Cloning",
+      tagline: "We clone your face and voice in person, then turn them into unlimited videos without you ever filming again.",
+      videoSrc: VIDEO.cloning, poster: poster("cloning"),
+      description: "Tired of having to record every single time you need a new video? Cloning builds a digital twin of you, face and voice, with absolute fidelity. The cloning is done 100% in person, at our studio, because that is the only way to capture every detail of your expression, your tone and your delivery with the precision the final result demands. After the setup, you get an avatar that speaks any script, across as many videos as you need, with your real face and your real voice.",
       process: [
-        { title: "Concept & angles", text: "The look, the angles, and the scene of the animation." },
-        { title: "3D generation", text: "The product built and animated to the approved concept." },
-        { title: "Materials & lighting", text: "Realistic materials, reflections, and studio light." },
-        { title: "High-res render", text: "Final render in high resolution." },
-        { title: "Versions & delivery", text: "Cuts and aspect ratios for every channel." },
+        { title: "In-person capture", text: "A dedicated studio session to record your face and voice at full fidelity." },
+        { title: "Cloning & calibration", text: "We build your digital twin and fine-tune expression, tone and delivery." },
+        { title: "Quality tests", text: "Side-by-side checks until the avatar is indistinguishable from you." },
+        { title: "Script to video", text: "Send a script, we generate the video with your face and voice." },
+        { title: "Cuts & delivery", text: "Vertical and horizontal cuts, captions and soundtrack for every channel." },
       ],
       packages: [
-        { name: "CGI Essential", price: "$990", features: ["1 main 3D animation (15-25s)", "Clean background (studio)", "2 angle variations", "High resolution", "2 revision rounds", "Delivery in up to 7 business days"] },
-        { name: "CGI Performance", price: "$1,490", features: ["1 main 3D animation (20-30s)", "1 lifestyle version (scene)", "3 angle/scene variations", "Vertical + horizontal", "High resolution + loop (if needed)", "2 revision rounds", "Delivery in up to 10 business days"], featured: true, badge: "Most chosen" },
-        { name: "CGI Complete", price: "$2,190", features: ["1 main 3D animation (25-40s)", "2 lifestyle versions", "4 angle/scene variations", "9:16, 1:1 and 16:9", "Advanced detail (materials, reflections and lighting)", "3 revision rounds", "Delivery in up to 12 business days"] },
+        { name: "Cloning Setup", price: "R$ 3,500", description: "One-time payment", features: ["High-fidelity face cloning", "Voice cloning (timbre and delivery)", "In-person capture session at the studio", "Calibration and quality testing", "Your avatar ready to produce"] },
+        { name: "Videos", price: "On request", description: "On demand", features: ["Volume defined per project, from one-off to monthly", "Any script, in your own face and voice", "Vertical and horizontal cuts", "Captions and soundtrack", "Price scales with volume: the more videos, the better the rate"], featured: true, badge: "Recurring" },
       ],
-      gallery: gallery("cgi"),
+      packagesNote: "Exclusive to clients in São José dos Campos, São Paulo and Jundiaí. Cloning is done in person to guarantee maximum precision and quality.",
+      gallery: gallery("cloning"),
     },
     {
       id: "websites", label: "Websites",
@@ -222,7 +239,7 @@ const en: SiteContent = {
         { name: "company", label: "Company name", type: "text", placeholder: "Company name", required: true, half: true },
         { name: "phone", label: "Phone number", type: "text", placeholder: "Phone number", half: true },
         { name: "email", label: "Work email address", type: "email", placeholder: "you@company.com", required: true },
-        { name: "format", label: "Which format?", type: "select", required: true, options: ["Brand Film", "Storytelling Commercial", "Corporate Film", "3D / CGI", "Websites", "Not sure yet"] },
+        { name: "format", label: "Which format?", type: "select", required: true, options: ["Brand Film", "Storytelling Commercial", "Corporate Film", "Cloning", "Websites", "Not sure yet"] },
         { name: "size", label: "Company size", type: "select", options: ["1-9", "10-49", "50-199", "200+"] },
         { name: "overview", label: "Overview of your project", type: "textarea", placeholder: "Tell us the goal, timeline, and any references", required: true },
         { name: "source", label: "How did you hear about us?", type: "select", options: ["LinkedIn", "Instagram", "Google", "Referral", "Other"] },
@@ -252,6 +269,15 @@ const pt: SiteContent = {
     contactEyebrow: "Contato", seeItems: "Ver detalhes",
     requiredField: "Preencha este campo obrigatório.",
     completeAll: "Preencha todos os campos obrigatórios.",
+    about: "Sobre",
+  },
+  about: {
+    eyebrow: "Sobre nós",
+    title: "O estúdio por trás dos vídeos.",
+    paragraphs: [
+      "[Placeholder] Aqui vai a história da Modely: quem somos, como trabalhamos e por que fazemos vídeo do jeito que fazemos. Você preenche com as informações legais depois.",
+      "[Placeholder] Um segundo parágrafo pra missão, o time e o diferencial do estúdio.",
+    ],
   },
   services: [
     {
@@ -312,23 +338,23 @@ const pt: SiteContent = {
       gallery: gallery("corporate"),
     },
     {
-      id: "cgi", label: "3D / CGI",
-      tagline: "Animação de produto fotorrealista que deixa seu produto premium, sem sessão de fotos cara.",
-      videoSrc: VIDEO.cgi, poster: poster("cgi"),
-      description: "Cansado de fotos de produto que ficam chapadas ou vídeos que não mostram o produto como ele merece? Este é pra marcas que querem visuais 3D limpos e de alto nível: materiais realistas, iluminação perfeita e movimento cinematográfico. Criamos CGI de produto com aparência premium e comercial. Ideal pra lançamentos, e-commerce, anúncios e sites, entregue rápido com IA + direção humana.",
+      id: "cloning", label: "Cloning",
+      tagline: "Clonamos seu rosto e sua voz presencialmente e transformamos em vídeos ilimitados, sem você precisar gravar de novo.",
+      videoSrc: VIDEO.cloning, poster: poster("cloning"),
+      description: "Cansado de depender de uma gravação toda vez que precisa de um vídeo novo? O Cloning cria um gêmeo digital seu, rosto e voz, com fidelidade absoluta. A clonagem é feita 100% presencialmente, no nosso estúdio, porque é a única forma de capturar cada detalhe da sua expressão, do seu timbre e da sua entonação com a precisão que o resultado final exige. Depois do setup, você tem um avatar que fala qualquer roteiro, em quantos vídeos você precisar, com a sua cara e a sua voz de verdade.",
       process: [
-        { title: "Conceito & ângulos", text: "O look, os ângulos e a cena da animação." },
-        { title: "Geração 3D", text: "O produto construído e animado no conceito aprovado." },
-        { title: "Materiais & iluminação", text: "Materiais realistas, reflexos e luz de estúdio." },
-        { title: "Render em alta", text: "Render final em alta resolução." },
-        { title: "Versões & entrega", text: "Cortes e proporções para cada canal." },
+        { title: "Captura presencial", text: "Uma sessão dedicada no estúdio pra registrar seu rosto e sua voz em alta fidelidade." },
+        { title: "Clonagem & calibração", text: "Construímos seu gêmeo digital e ajustamos expressão, timbre e entonação." },
+        { title: "Testes de qualidade", text: "Comparações lado a lado até o avatar ficar indistinguível de você." },
+        { title: "Do roteiro ao vídeo", text: "Você manda o roteiro, a gente gera o vídeo com o seu rosto e a sua voz." },
+        { title: "Cortes & entrega", text: "Cortes vertical e horizontal, legendas e trilha pra cada canal." },
       ],
       packages: [
-        { name: "CGI Essencial", price: "R$ 1.900", features: ["1 animação 3D principal (15-25s)", "Fundo limpo (estúdio)", "2 variações de ângulo", "Alta resolução", "2 rodadas de revisão", "Entrega em até 7 dias úteis"] },
-        { name: "CGI Performance", price: "R$ 2.900", features: ["1 animação 3D principal (20-30s)", "1 versão lifestyle (cenário)", "3 variações de ângulo/cena", "Versões vertical + horizontal", "Alta resolução + loop (se necessário)", "2 rodadas de revisão", "Entrega em até 10 dias úteis"], featured: true, badge: "Mais escolhido" },
-        { name: "CGI Completo", price: "R$ 4.200", features: ["1 animação 3D principal (25-40s)", "2 versões lifestyle", "4 variações de ângulo/cena", "Versões 9:16, 1:1 e 16:9", "Detalhes avançados (materiais, reflexos e iluminação)", "3 rodadas de revisão", "Entrega em até 12 dias úteis"] },
+        { name: "Setup de Clonagem", price: "R$ 3.500", description: "Pagamento único", features: ["Clonagem de rosto em alta fidelidade", "Clonagem de voz (timbre e entonação)", "Sessão presencial de captura no estúdio", "Calibração e testes de qualidade", "Seu avatar pronto pra produzir"] },
+        { name: "Vídeos", price: "Sob consulta", description: "Por demanda", features: ["Quantidade definida por projeto, do avulso ao mensal", "Qualquer roteiro, no seu rosto e na sua voz", "Cortes vertical e horizontal", "Legendas e trilha", "Preço por volume: quanto mais vídeos, melhor o valor"], featured: true, badge: "Recorrente" },
       ],
-      gallery: gallery("cgi"),
+      packagesNote: "Exclusivo para clientes de São José dos Campos, São Paulo e Jundiaí. A clonagem é feita presencialmente para garantir máxima precisão e qualidade.",
+      gallery: gallery("cloning"),
     },
     {
       id: "websites", label: "Websites",
@@ -361,7 +387,7 @@ const pt: SiteContent = {
         { name: "company", label: "Empresa", type: "text", placeholder: "Nome da empresa", required: true, half: true },
         { name: "phone", label: "Telefone", type: "text", placeholder: "Telefone / WhatsApp", half: true },
         { name: "email", label: "Email de trabalho", type: "email", placeholder: "voce@empresa.com", required: true },
-        { name: "format", label: "Qual formato?", type: "select", required: true, options: ["Brand Film", "Storytelling Commercial", "Corporate Film", "3D / CGI", "Websites", "Ainda não sei"] },
+        { name: "format", label: "Qual formato?", type: "select", required: true, options: ["Brand Film", "Storytelling Commercial", "Corporate Film", "Cloning", "Websites", "Ainda não sei"] },
         { name: "size", label: "Tamanho da empresa", type: "select", options: ["1-9", "10-49", "50-199", "200+"] },
         { name: "overview", label: "Sobre o seu projeto", type: "textarea", placeholder: "Conte o objetivo, o prazo e referências", required: true },
         { name: "source", label: "Como você nos conheceu?", type: "select", options: ["LinkedIn", "Instagram", "Google", "Indicação", "Outro"] },
@@ -383,3 +409,4 @@ export const DEFAULT_LOCALE: Locale = "en";
 
 export const CONTACT_OVERLAY = "contact";
 export const NAV_OVERLAY = "nav";
+export const ABOUT_OVERLAY = "about";

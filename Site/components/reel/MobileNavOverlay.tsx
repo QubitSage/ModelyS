@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { content, CONTACT_OVERLAY } from "@/content/site";
+import { content, CONTACT_OVERLAY, ABOUT_OVERLAY } from "@/content/site";
 import { useNavigation } from "@/lib/reel-store";
 import { OverlayShell } from "./OverlayShell";
 
@@ -12,7 +12,7 @@ import { OverlayShell } from "./OverlayShell";
 export function MobileNavOverlay({ onClose }: { onClose: () => void }) {
   const openOverlay = useNavigation((s) => s.openOverlay);
   const site = content[useNavigation((s) => s.locale)];
-  const { services } = site;
+  const { services, ui } = site;
 
   const goToPanel = (id: string) => {
     onClose();
@@ -46,11 +46,20 @@ export function MobileNavOverlay({ onClose }: { onClose: () => void }) {
           </motion.button>
         ))}
         <motion.button
+          onClick={() => openOverlay(ABOUT_OVERLAY)}
+          className="mt-4 text-left text-3xl font-light tracking-tight text-white/80 transition-colors hover:text-white"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.1 + services.length * 0.06, duration: 0.4 }}
+        >
+          {ui.about}
+        </motion.button>
+        <motion.button
           onClick={() => openOverlay(CONTACT_OVERLAY)}
           className="mt-6 text-left text-lg uppercase tracking-widest text-white/50 transition-colors hover:text-white"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.1 + services.length * 0.06, duration: 0.4 }}
+          transition={{ delay: 0.1 + (services.length + 1) * 0.06, duration: 0.4 }}
         >
           {site.headerCta}
         </motion.button>

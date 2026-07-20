@@ -1,7 +1,7 @@
 "use client";
 
 import { useNavigation } from "@/lib/reel-store";
-import { content, CONTACT_OVERLAY, NAV_OVERLAY, type Locale } from "@/content/site";
+import { content, CONTACT_OVERLAY, NAV_OVERLAY, ABOUT_OVERLAY, type Locale } from "@/content/site";
 
 /**
  * Header fixo. Marca + tagline curta à esquerda, menu de serviços no centro,
@@ -13,7 +13,7 @@ export function Header() {
   const closeOverlay = useNavigation((s) => s.closeOverlay);
   const locale = useNavigation((s) => s.locale);
   const setLocale = useNavigation((s) => s.setLocale);
-  const { brand, services, taglineShort, headerCta } = content[locale];
+  const { brand, services, taglineShort, headerCta, ui } = content[locale];
 
   const goToPanel = (id: string) => {
     closeOverlay();
@@ -49,6 +49,13 @@ export function Header() {
             <span className="absolute -bottom-1 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
           </button>
         ))}
+        <button
+          onClick={() => openOverlay(ABOUT_OVERLAY)}
+          className="group relative text-sm tracking-wide text-white/60 transition-colors hover:text-white"
+        >
+          {ui.about}
+          <span className="absolute -bottom-1 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
+        </button>
       </nav>
 
       {/* Direita: idioma + contato / hamburger */}

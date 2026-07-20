@@ -2,10 +2,11 @@
 
 import { AnimatePresence } from "framer-motion";
 import { useNavigation } from "@/lib/reel-store";
-import { content, CONTACT_OVERLAY, NAV_OVERLAY } from "@/content/site";
+import { content, CONTACT_OVERLAY, NAV_OVERLAY, ABOUT_OVERLAY } from "@/content/site";
 import { ServiceModal } from "./ServiceModal";
 import { ContactOverlay } from "./ContactOverlay";
 import { MobileNavOverlay } from "./MobileNavOverlay";
+import { AboutOverlay } from "./AboutOverlay";
 
 /**
  * Decide QUAL camada aparece por cima do reel, a partir de `activeOverlay`.
@@ -24,6 +25,8 @@ export function Overlays() {
       return <ContactOverlay key="contact" onClose={closeOverlay} />;
     if (activeOverlay === NAV_OVERLAY)
       return <MobileNavOverlay key="nav" onClose={closeOverlay} />;
+    if (activeOverlay === ABOUT_OVERLAY)
+      return <AboutOverlay key="about" onClose={closeOverlay} />;
     if (service)
       return (
         <ServiceModal key={service.id} service={service} onClose={closeOverlay} />
