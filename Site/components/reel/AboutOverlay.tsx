@@ -60,7 +60,7 @@ export function AboutOverlay({ onClose }: { onClose: () => void }) {
               <h3 className="mb-5 mt-14 text-xs uppercase tracking-[0.2em] text-white/40">
                 {about.clientsTitle}
               </h3>
-              <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-3">
+              <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-4">
                 {about.clients.map((c) => (
                   <div
                     key={c.name}
