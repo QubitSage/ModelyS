@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { content, CONTACT_OVERLAY } from "@/content/site";
 import { useNavigation } from "@/lib/reel-store";
@@ -54,8 +55,39 @@ export function AboutOverlay({ onClose }: { onClose: () => void }) {
             ))}
           </motion.div>
 
+          {about.clients.length > 0 && (
+            <motion.div custom={2} variants={fade} initial="hidden" animate="show">
+              <h3 className="mb-5 mt-14 text-xs uppercase tracking-[0.2em] text-white/40">
+                {about.clientsTitle}
+              </h3>
+              <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-3">
+                {about.clients.map((c) => (
+                  <div
+                    key={c.name}
+                    className="flex h-24 items-center justify-center bg-neutral-950 px-4"
+                    title={c.name}
+                  >
+                    {c.logo ? (
+                      <Image
+                        src={c.logo}
+                        alt={c.name}
+                        width={140}
+                        height={48}
+                        className="max-h-12 w-auto object-contain opacity-60 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+                      />
+                    ) : (
+                      <span className="text-sm font-medium tracking-wide text-white/30">
+                        {c.name}
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
           <motion.div
-            custom={2}
+            custom={3}
             variants={fade}
             initial="hidden"
             animate="show"

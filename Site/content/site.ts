@@ -57,10 +57,17 @@ export type UIStrings = {
   about: string; // rótulo do menu "Sobre / About"
 };
 
+export type ClientLogo = {
+  name: string;
+  logo?: string; // caminho em /public (ex: "/clients/acme.svg"). Sem logo = mostra o nome.
+};
+
 export type AboutContent = {
   eyebrow: string;
   title: string;
   paragraphs: string[];
+  clientsTitle: string;
+  clients: ClientLogo[];
 };
 
 export type SiteContent = {
@@ -106,6 +113,18 @@ const SOCIALS: SocialLink[] = [
   { label: "YouTube", href: "https://youtube.com/@modely" },
 ];
 
+// Logos dos clientes (a mesma lista nos dois idiomas). Pra ativar um logo:
+// coloque o arquivo em Site/public/clients/ e aponte em `logo`. Sem `logo`,
+// renderiza o nome como placeholder estilizado.
+const CLIENTS: ClientLogo[] = [
+  { name: "Cliente 1" },
+  { name: "Cliente 2" },
+  { name: "Cliente 3" },
+  { name: "Cliente 4" },
+  { name: "Cliente 5" },
+  { name: "Cliente 6" },
+];
+
 // ===========================================================================
 // EN
 // ===========================================================================
@@ -130,6 +149,8 @@ const en: SiteContent = {
       "[Placeholder] The Modely story goes here: who we are, how we work, and why we build videos the way we do. You will fill this in with the good stuff later.",
       "[Placeholder] A second paragraph for the mission, the team, and what sets the studio apart.",
     ],
+    clientsTitle: "Trusted by",
+    clients: CLIENTS,
   },
   services: [
     {
@@ -278,6 +299,8 @@ const pt: SiteContent = {
       "[Placeholder] Aqui vai a história da Modely: quem somos, como trabalhamos e por que fazemos vídeo do jeito que fazemos. Você preenche com as informações legais depois.",
       "[Placeholder] Um segundo parágrafo pra missão, o time e o diferencial do estúdio.",
     ],
+    clientsTitle: "Quem confia na gente",
+    clients: CLIENTS,
   },
   services: [
     {
