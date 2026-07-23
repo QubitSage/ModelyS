@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { content, CONTACT_OVERLAY } from "@/content/site";
 import { useNavigation } from "@/lib/reel-store";
@@ -56,32 +55,32 @@ export function AboutOverlay({ onClose }: { onClose: () => void }) {
           </motion.div>
 
           {about.clients.length > 0 && (
-            <motion.div custom={2} variants={fade} initial="hidden" animate="show">
-              <h3 className="mb-5 mt-14 text-xs uppercase tracking-[0.2em] text-white/40">
+            <motion.div custom={2} variants={fade} initial="hidden" animate="show" className="mt-14">
+              <h3 className="mb-6 text-xs uppercase tracking-[0.2em] text-white/40">
                 {about.clientsTitle}
               </h3>
-              <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-4">
-                {about.clients.map((c) => (
-                  <div
-                    key={c.name}
-                    className="flex h-24 items-center justify-center bg-neutral-950 px-4"
-                    title={c.name}
-                  >
-                    {c.logo ? (
-                      <Image
+              <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+                <div className="logo-marquee flex w-max items-center gap-16 sm:gap-24">
+                  {[...about.clients, ...about.clients, ...about.clients].map((c, i) =>
+                    c.logo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        key={c.name + i}
                         src={c.logo}
                         alt={c.name}
-                        width={140}
-                        height={48}
-                        className="max-h-10 w-auto object-contain opacity-70 invert transition-opacity hover:opacity-100"
+                        title={c.name}
+                        className="h-6 w-auto shrink-0 object-contain opacity-40 invert transition-opacity duration-300 hover:opacity-90 sm:h-7"
                       />
                     ) : (
-                      <span className="text-sm font-medium tracking-wide text-white/30">
+                      <span
+                        key={c.name + i}
+                        className="shrink-0 text-sm font-medium tracking-wide text-white/25"
+                      >
                         {c.name}
                       </span>
-                    )}
-                  </div>
-                ))}
+                    )
+                  )}
+                </div>
               </div>
             </motion.div>
           )}

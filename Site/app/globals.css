@@ -159,3 +159,9 @@ html.reel-no-scroll body {
 @keyframes barSlide { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
 .preloader-brand { animation: brandPulse 1.6s ease-in-out infinite; }
 .preloader-bar   { animation: barSlide 1.1s ease-in-out infinite; }
+
+/* Faixa de logos de clientes: deriva contínua e suave (o conteúdo é triplicado). */
+@keyframes logoMarquee { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
+.logo-marquee { animation: logoMarquee 30s linear infinite; }
+.logo-marquee:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .logo-marquee { animation: none; } }
