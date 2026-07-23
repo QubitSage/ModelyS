@@ -22,6 +22,8 @@ export function middleware(req: NextRequest) {
 
   // assets do Next sempre livres (em qualquer host)
   if (pathname.startsWith('/_next')) return NextResponse.next()
+  // arquivos estáticos do public/ (qualquer path com extensão): logos, svg, etc.
+  if (/\.[a-z0-9]+$/i.test(pathname)) return NextResponse.next()
 
   // ---- domínio público: só o portal ----
   if (PUBLIC_HOSTS.includes(host)) {

@@ -117,10 +117,10 @@ const SOCIALS: SocialLink[] = [
 // coloque o arquivo em Site/public/clients/ e aponte em `logo`. Sem `logo`,
 // renderiza o nome como placeholder estilizado.
 const CLIENTS: ClientLogo[] = [
-  { name: "Sencon" },
-  { name: "Eai Invest" },
-  { name: "TraderMap" },
-  { name: "TC" },
+  { name: "Sencon", logo: "/clients/sencon.png" },
+  { name: "Eai Invest", logo: "/clients/eai-invest.png" },
+  { name: "TradeMap", logo: "/clients/trademap.png" },
+  { name: "TC", logo: "/clients/tc.png" },
 ];
 
 // ===========================================================================

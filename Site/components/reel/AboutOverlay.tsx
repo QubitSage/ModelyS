@@ -73,7 +73,7 @@ export function AboutOverlay({ onClose }: { onClose: () => void }) {
                         alt={c.name}
                         width={140}
                         height={48}
-                        className="max-h-12 w-auto object-contain opacity-60 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+                        className="max-h-10 w-auto object-contain opacity-70 invert transition-opacity hover:opacity-100"
                       />
                     ) : (
                       <span className="text-sm font-medium tracking-wide text-white/30">
