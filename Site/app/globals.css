@@ -160,8 +160,11 @@ html.reel-no-scroll body {
 .preloader-brand { animation: brandPulse 1.6s ease-in-out infinite; }
 .preloader-bar   { animation: barSlide 1.1s ease-in-out infinite; }
 
-/* Faixa de logos de clientes: deriva contínua e suave (o conteúdo é triplicado). */
-@keyframes logoMarquee { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
-.logo-marquee { animation: logoMarquee 30s linear infinite; }
-.logo-marquee:hover { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce) { .logo-marquee { animation: none; } }
+/* Logos de clientes: flutuam espalhados pelo canvas, cada um com deriva própria.
+   O translate(-50%,-50%) centraliza no ponto (top/left); a animação preserva isso. */
+@keyframes logoFloat1 { 0%,100%{transform:translate(-50%,-50%)} 50%{transform:translate(-50%,calc(-50% - 20px))} }
+@keyframes logoFloat2 { 0%,100%{transform:translate(-50%,-50%)} 50%{transform:translate(calc(-50% + 18px),calc(-50% - 12px))} }
+@keyframes logoFloat3 { 0%,100%{transform:translate(-50%,-50%)} 50%{transform:translate(calc(-50% - 16px),calc(-50% + 14px))} }
+@keyframes logoFloat4 { 0%,100%{transform:translate(-50%,-50%)} 50%{transform:translate(calc(-50% + 12px),calc(-50% + 18px))} }
+.logo-float { position:absolute; will-change:transform; }
+@media (prefers-reduced-motion: reduce) { .logo-float { animation: none !important; } }
